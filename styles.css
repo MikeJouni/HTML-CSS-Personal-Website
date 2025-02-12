@@ -1090,3 +1090,19 @@ footer {
         font-size: 0.8rem;
     }
 }
+
+@media (max-width: 768px) {
+    .modal-nav-btn {
+        top: auto;
+        bottom: 1rem;
+        transform: none;
+    }
+
+    .modal-prev {
+        left: 1rem;
+    }
+
+    .modal-next {
+        right: 1rem;
+    }
+}
