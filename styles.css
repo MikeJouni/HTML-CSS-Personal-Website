@@ -32,6 +32,10 @@
     --mysql-color: #4479A1;
     --sequelize-color: #52B0E7;
     --c-color: #A8B9CC;
+    --marketing-color: #6f0913;
+    --socialmedia-color: #ff0000;
+
+
 }
 
 * {
@@ -271,7 +275,9 @@ section {
     overflow: hidden;
 }
 
-
+/* Add these alongside the other tag colors */
+.tag-socialmedia { background: var(--socialmedia-color); color: white; }
+.tag-marketing { background: var(--marketing-color); color: white; }
 
 .card-base::before {
     content: '';
@@ -1018,5 +1024,69 @@ footer {
 @media (max-width: 768px) {
     .project-showcase {
         height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 2rem;
+        background: rgba(15, 15, 26, 0.9);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-container {
+        margin-bottom: 1rem;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .sub-heading {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .intro-box {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        padding: 1rem;
+    }
+
+    .education-inline {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .education-inline img {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .contact-info a {
+        margin: 0;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
     }
 }

@@ -155,8 +155,8 @@ if (isset($_SESSION['contact_message'])) {
         <li>Implemented strategies to improve local customer engagement and brand awareness</li>
     </ul>
     <div class="tags">
-        <span class="tag tag-javascript">Social Media</span>
-        <span class="tag tag-python">Marketing</span>
+        <span class="tag tag-socialmedia">Social Media</span>
+        <span class="tag tag-marketing">Marketing</span>
     </div>
 </div>
 
@@ -373,6 +373,10 @@ if (isset($_SESSION['contact_message'])) {
                 <span class="tag tag-c/cpp">C</span>
                 <span class="tag tag-wordpress">WordPress</span>
                 <span class="tag tag-php">PHP</span>
+                <span class="tag tag-socialmedia">Social Media</span>
+                <span class="tag tag-marketing">Marketing</span>
+
+
             </div>
         </section>
 
