@@ -394,11 +394,6 @@ display: flex;
 transition: transform 0.3s ease-in-out;
 }
 
-.project-image-gallery {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-    width: 100%;
-}
 
 
 .gallery-nav {
@@ -911,6 +906,7 @@ footer {
     z-index: 10;
     transition: background 0.3s ease;
 }
+
 
 .modal-nav-btn:hover {
     background: rgba(255,255,255,0.4);

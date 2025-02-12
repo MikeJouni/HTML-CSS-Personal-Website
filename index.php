@@ -1,12 +1,42 @@
 <?php
+// Start the session to persist messages
+session_start();
+
 $message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $message_content = $_POST['message'] ?? '';
+    
     if (!empty($name) && !empty($email) && !empty($message_content)) {
-        $message = "Thanks for your message, $name! I'll get back to you soon.";
+        // Email content
+        $to = "jouni.inc@gmail.com";
+        $subject = "New Portfolio Contact from $name";
+        $email_content = "Name: $name\n";
+        $email_content .= "Email: $email\n\n";
+        $email_content .= "Message:\n$message_content";
+        
+        $headers = "From: $email\r\n";
+        $headers .= "Reply-To: $email\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
+        // Send email
+        mail($to, $subject, $email_content, $headers);
+        
+        // Store success message in session
+        $_SESSION['contact_message'] = "Thanks for your message, $name! I'll get back to you soon.";
+        
+        // Redirect to the same page to prevent form resubmission
+        header("Location: " . $_SERVER['PHP_SELF'] . "#contact");
+        exit();
     }
+}
+
+// Get message from session if it exists
+if (isset($_SESSION['contact_message'])) {
+    $message = $_SESSION['contact_message'];
+    // Clear the message from session
+    unset($_SESSION['contact_message']);
 }
 ?>
 
@@ -53,13 +83,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="intro-box">
 👋 Hey there! I’m a software engineer with expertise in Dart, Javescript, Firebase and backed by coursework in engineering, algorithms, and data structures. I enjoy solving challenging problems and making application user-friendly. My focus is on efficiency, scalability, and continuous learning.
 <div class="contact-info">
-                        <a href="tel:+13133498500">📱 (313) 349-8500</a>
-                        <a href="mailto:mjjouni1@umich.edu">📧 mjjouni1@umich.edu</a>
-                        <a href="https://www.linkedin.com/in/moejouni" target="_blank">👔 LinkedIn</a>
-                        <a href="https://github.com/Mikejouni" target="_blank">💻 GitHub</a>
-                        <div class="education-inline">
+<div class="education-inline">
                             <img src="Media/umlogo.png" alt="University of Michigan Logo" style="width: 30px; height: 30px; margin-right: 0.5rem;">
                             B.S Software Engineering | 2020 - 2024
+                            <a href="https://github.com/Mikejouni" target="_blank">💻 GitHub</a>
+                        <a href="https://www.linkedin.com/in/moejouni" target="_blank">👔 LinkedIn</a>
+                        <a href="mailto:mjjouni1@umich.edu">📧 Contact</a>
+
                         </div>
                     </div>
                 </div>
@@ -72,38 +102,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2 class="section-title">Experience</h2>
             
             <div class="experience-card">
-                <div class="company-header">
-                    <div class="company-logo">SA</div>
-                    <div>
-                        <h3>AI Modeling Intern</h3>
-                        <p>Swift Act LLC | Jan 2025 - Present</p>
-                    </div>
-                </div>
-                <ul>
-                    <li>Worked on developing an ASPICE compliance automation AI model using Python, PyTorch, and DeepSeek models</li>
-                    <li>Implemented 80/20 training-validation split and integrated DeepSeek's transformer architecture</li>
-                    <li>Set goals to reach ASPICE Suede 4 audits for automotive industry compliance</li>
-                </ul>
-                <div class="tags">
-                    <span class="tag tag-python">Python</span>
-                    <span class="tag tag-pytorch">PyTorch</span>
-                </div>
-            </div>
+    <div class="company-header">
+        <div class="company-logo">
+            <img src="Media/Swiftact.jpeg" alt="Swift Act LLC Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+        </div>
+        <div>
+            <h3>AI Modeling Intern</h3>
+            <p>Swift Act LLC | Jan 2025 - Present</p>
+        </div>
+    </div>
+    <ul>
+        <li>Worked on developing an ASPICE compliance automation AI model using Python, PyTorch, and DeepSeek models</li>
+        <li>Implemented 80/20 training-validation split and integrated DeepSeek's transformer architecture</li>
+        <li>Set goals to reach ASPICE Suede 4 audits for automotive industry compliance</li>
+    </ul>
+    <div class="tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-pytorch">PyTorch</span>
+    </div>
+</div>
 
-            <div class="experience-card">
-                <div class="company-header">
-                    <div class="company-logo">SW</div>
-                    <div>
-                        <h3>Troubleshooting Intern</h3>
-                        <p>Supreme Window Factory | June 2022 - August 2022</p>
-                    </div>
-                </div>
-                <ul>
-                    <li>Assisted in facilitating automation of window screens to increase labor output and efficiency</li>
-                    <li>Utilized machine software to achieve precise cuts limiting misuse of excess material</li>
-                    <li>Troubleshooted and resolved issues related to faulty machinery</li>
-                </ul>
-            </div>
+<div class="experience-card">
+    <div class="company-header">
+        <div class="company-logo">
+            <img src="Media/Supreme.png" alt="Supreme Window Factory Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+        </div>
+        <div>
+            <h3>Troubleshooting Intern</h3>
+            <p>Supreme Window Factory | June 2022 - August 2022</p>
+        </div>
+    </div>
+    <ul>
+        <li>Assisted in facilitating automation of window screens to increase labor output and efficiency</li>
+        <li>Utilized machine software to achieve precise cuts limiting misuse of excess material</li>
+        <li>Troubleshooted and resolved issues related to faulty machinery</li>
+    </ul>
+</div>
+
+<div class="experience-card">
+    <div class="company-header">
+        <div class="company-logo">
+            <img src="Media/Bigmoes.jpeg" alt="Big Moe's Kitchen Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+        </div>
+        <div>
+            <h3>Social Media Manager</h3>
+            <p>Big Moe's Kitchen | June 2020 - May 2021</p>
+        </div>
+    </div>
+    <ul>
+        <li>Managed social media advertising campaigns designed to increase media visibility and gain traction of customers through local search optimization</li>
+        <li>Created timelines for process of creating, editing, releasing social media posts</li>
+        <li>Implemented strategies to improve local customer engagement and brand awareness</li>
+    </ul>
+    <div class="tags">
+        <span class="tag tag-javascript">Social Media</span>
+        <span class="tag tag-python">Marketing</span>
+    </div>
+</div>
+
+
+
         </section>
 
         <section id="projects">
@@ -128,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button class="gallery-nav-btn gallery-prev">←</button>
                             <button class="gallery-nav-btn gallery-next">→</button>
                         </div>
-                        <h3 class="project-title">Yasser Halal Debt Tracking</h3>
+                        <h3 class="project-title">Yasser Wholesale Halal Order/Debt Software</h3>
                         <p class="project-description">Cloud-based debt web application for order/debt tracking at Yasser Halal Meats </p>
                         <ul>
                             <li>Replaced manual Excel tracking, improving data accuracy and payment tracking</li>
@@ -493,18 +551,8 @@ imageModals.forEach(showcase => {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for navigation
-    document.querySelectorAll('.nav-link').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
+    // Handle all showcases
     const projects = document.querySelectorAll('.project-showcase');
     
     projects.forEach(project => {
@@ -613,7 +661,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (images.length <= 1) return;
         
         let currentIndex = 0;
-        const totalImages = images.length;
 
         function updateGallery() {
             imageGallery.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -622,24 +669,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalImages;
-            updateGallery();
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-            updateGallery();
-        }
-
         prevBtn?.addEventListener('click', (e) => {
             e.preventDefault();
-            prevSlide();
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateGallery();
         });
 
         nextBtn?.addEventListener('click', (e) => {
             e.preventDefault();
-            nextSlide();
+            currentIndex = (currentIndex + 1) % images.length;
+            updateGallery();
         });
 
         dots.forEach((dot, index) => {
@@ -649,13 +688,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-});
 
-    // Smooth scrolling for navigation
+    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
+            document.querySelector(this.getAttribute('href'))?.scrollIntoView({
                 behavior: 'smooth'
             });
         });
