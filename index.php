@@ -80,7 +80,7 @@ if (isset($_SESSION['contact_message'])) {
                     <h1>Mohammad Alhadi Jouni</h1>
                     <p class="sub-heading">Software Engineering Student At University of Michigan</p>
 <div class="intro-box">
-👋 Hey there! I’m a software engineer with expertise in Dart, Javescript, Firebase and backed by coursework in engineering, algorithms, and data structures. I enjoy solving challenging problems and making application user-friendly. My focus is on efficiency, scalability, and continuous learning.
+👋 Hey there! I’m a software engineer with expertise in Dart, Javascript, Firebase and backed by coursework in engineering, algorithms, and data structures. I enjoy solving challenging problems and making application user-friendly. My focus is on efficiency, scalability, and continuous learning.
 <div class="contact-info">
 <div class="education-inline">
                             <img src="Media/umlogo.png" alt="University of Michigan Logo" style="width: 30px; height: 30px; margin-right: 0.5rem;">
